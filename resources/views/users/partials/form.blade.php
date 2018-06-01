@@ -1,11 +1,23 @@
 <div class="form-group">
-	{{ Form::label('Nombre', 'Nombre del usuario') }}
+	{{ Form::label('Nombre', 'Nombre') }}
 	{{ Form::text('name', null, ['class' => 'form-control']) }}
 </div>
+<hr>
+
+<h3>Lista de roles</h3>
 
 <div class="form-group">
-	{{ Form::label('Email', 'Descripción del usuario') }}
-	{{ Form::text('email', null, ['class' => 'form-control']) }}
+	<ul class="list-unstyled">
+		@foreach($roles as $role)
+			<li>
+				<label>
+					{{ form::checkbox('roles[]', $role->id, null) }}
+						{{ $role->name }}
+						<em>({{ $role->description ?: 'Sin descripción' }})</em>					
+				</label>
+			</li>
+		@endforeach
+	</ul>
 </div>
 
 <div class="form-group">	
