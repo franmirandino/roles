@@ -6,13 +6,13 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	Producto
+                	Usuario
                 </div>
 
                 <div class="panel-body">
-					{!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'PUT']) !!}
+					{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT']) !!}
 						
-						@include('products.partials.form')
+						@include('users.partials.form')
 
 					{!! Form::close() !!}
                 </div>

@@ -1,11 +1,11 @@
 <div class="form-group">
-	{{ Form::label('name', 'Nombre del producto') }}
+	{{ Form::label('Nombre', 'Nombre del usuario') }}
 	{{ Form::text('name', null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">
-	{{ Form::label('description', 'Descripción del producto') }}
-	{{ Form::text('description', null, ['class' => 'form-control']) }}
+	{{ Form::label('Email', 'Descripción del usuario') }}
+	{{ Form::text('email', null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">	
