@@ -39,18 +39,26 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $roles = Role::get();
-        return view('roles.edit', compact('roles','role'));
+        $permissions = Permission::get();
+        return view('roles.edit', compact('role','permissions'));
         
     }
 
     public function create()
     {
-        return view('roles.create');
+        $permissions = Permission::all();
+        return view('roles.create', compact('permissions'));
     }
 
-    public function store(Request $request, Role $role)
+    public function store(Request $request)
     {
+        $role = Role::create($request->all());
+
+        //actualizar parmissions
+        $role->permissions()->sync($request->get('permissions'));
+
+        return redirect()->route('roles.edit', $role->id)
+            ->with('info', 'Role guardado con éxito');
 
     }
 
@@ -63,16 +71,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //actualiza usuarios
+        //actualiza role
         $role->update($request->all());
 
-        //actualizar roles
+        //actualizar parmissions
 
-        $role->roles()->sync($request->get('roles'));
-
-
-
-
+        $role->permissions()->sync($request->get('permissions'));
 
         return redirect()->route('roles.edit', $role->id)->with('info', 'Role actualizado con éxito');
 
